@@ -77,7 +77,7 @@
 }
 
 /* Screens up to 680px - VERTICAL LAYOUT */
-@media (max-width: 680px) {
+@media (max-width: 896px) {
   .propiedades {
     flex-direction: column;
     text-align: center;

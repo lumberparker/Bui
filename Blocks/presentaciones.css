@@ -114,7 +114,7 @@
     }
 }
 
-@media (max-width: 680px) {
+@media (max-width: 896px) {
     .presentaciones__container {
         flex-direction: column;
         gap: 40px;
