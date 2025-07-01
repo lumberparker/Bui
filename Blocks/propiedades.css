@@ -76,7 +76,30 @@
   }
 }
 
-/* Screens up to 680px - VERTICAL LAYOUT */
+/* Screens from 897px to 1024px - Keep horizontal layout but smaller sizes */
+@media (max-width: 897px) {
+  .propiedades {
+    padding: 40px 15px;
+  }
+  
+  .propiedades__content {
+    padding: 0 20px;
+    gap: 30px;
+  }
+  
+  .propiedades__content_title {
+    font-size: 40px;
+    line-height: 42px;
+    max-width: 450px;
+  }
+  
+  .propiedades__content_item {
+    font-size: 24px;
+    line-height: 26px;
+  }
+}
+
+/* Screens up to 896px - VERTICAL LAYOUT */
 @media (max-width: 896px) {
   .propiedades {
     flex-direction: column;

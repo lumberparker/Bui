@@ -572,6 +572,104 @@ class VideoAutoplayManager {
     }
 }
 
+// Ripple Effect for Presentaciones
+class RippleEffect {
+    constructor() {
+        this.init();
+    }
+    
+    init() {
+        const mediaElements = document.querySelectorAll('.presentaciones__media');
+        
+        mediaElements.forEach(media => {
+            media.addEventListener('click', (e) => {
+                this.createRipple(media, e);
+            });
+        });
+    }
+    
+    createRipple(element, event) {
+        // Remove existing ripple class if present
+        element.classList.remove('ripple-effect');
+        
+        // Force reflow to ensure class removal takes effect
+        void element.offsetWidth;
+        
+        // Add ripple effect class
+        element.classList.add('ripple-effect');
+        
+        // Remove the class after animation completes
+        setTimeout(() => {
+            element.classList.remove('ripple-effect');
+        }, 1000);
+        
+        // Create additional ripple waves for enhanced effect
+        this.createWaves(element, event);
+    }
+    
+    createWaves(element, event) {
+        const rect = element.getBoundingClientRect();
+        const size = Math.max(rect.width, rect.height);
+        
+        // Create multiple wave elements for layered effect
+        for (let i = 0; i < 3; i++) {
+            setTimeout(() => {
+                this.createSingleWave(element, size, i);
+            }, i * 150);
+        }
+    }
+    
+    createSingleWave(element, size, index) {
+        const wave = document.createElement('div');
+        wave.style.cssText = `
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            width: 0;
+            height: 0;
+            border-radius: 50%;
+            background: radial-gradient(circle, rgba(255,255,255,${0.3 - index * 0.1}) 0%, transparent 70%);
+            transform: translate(-50%, -50%);
+            pointer-events: none;
+            z-index: ${5 + index};
+            animation: wave-expand 0.8s ease-out forwards;
+        `;
+        
+        // Add CSS animation keyframes if not already present
+        if (!document.querySelector('#wave-animation-styles')) {
+            const style = document.createElement('style');
+            style.id = 'wave-animation-styles';
+            style.textContent = `
+                @keyframes wave-expand {
+                    0% {
+                        width: 0;
+                        height: 0;
+                        opacity: 0.8;
+                    }
+                    50% {
+                        opacity: 0.4;
+                    }
+                    100% {
+                        width: ${size * 1.5}px;
+                        height: ${size * 1.5}px;
+                        opacity: 0;
+                    }
+                }
+            `;
+            document.head.appendChild(style);
+        }
+        
+        element.appendChild(wave);
+        
+        // Remove wave element after animation
+        setTimeout(() => {
+            if (wave.parentNode) {
+                wave.parentNode.removeChild(wave);
+            }
+        }, 800);
+    }
+}
+
 // Initialize carousel and language manager when DOM is loaded
 document.addEventListener('DOMContentLoaded', () => {
     console.log('DOM loaded - initializing components...');
@@ -581,6 +679,7 @@ document.addEventListener('DOMContentLoaded', () => {
     window.languageManager = new LanguageManager();
     window.hamburgerMenu = new HamburgerMenu();
     window.videoAutoplayManager = new VideoAutoplayManager();
+    window.rippleEffect = new RippleEffect();
     
     // Initialize presentaciones videos with delay to ensure DOM is ready
     setTimeout(() => {
