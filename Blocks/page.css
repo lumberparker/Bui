@@ -10,6 +10,12 @@
     margin: 0;
     padding: 0;
     box-sizing: border-box;
+    
+    /* Disable text selection globally */
+    -webkit-user-select: none; /* Safari */
+    -moz-user-select: none; /* Firefox */
+    -ms-user-select: none; /* Internet Explorer/Edge */
+    user-select: none; /* Standard */
 }
 
 /* ====================================
@@ -28,6 +34,16 @@ body {
     max-width: 1100px; /* Never exceed viewport width */
     margin-left: auto; /* Center the body */
     margin-right: auto; /* Center the body */
+    
+    /* Disable text selection */
+    -webkit-user-select: none; /* Safari */
+    -moz-user-select: none; /* Firefox */
+    -ms-user-select: none; /* Internet Explorer/Edge */
+    user-select: none; /* Standard */
+    
+    /* Disable text highlighting */
+    -webkit-touch-callout: none; /* iOS Safari */
+    -webkit-tap-highlight-color: transparent; /* Remove tap highlight on mobile */
 }
 
 .page-container {
