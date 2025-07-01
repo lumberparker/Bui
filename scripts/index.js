@@ -499,6 +499,79 @@ function initPresentacionesVideos() {
     });
 }
 
+// Video Autoplay Manager for Small Screens
+class VideoAutoplayManager {
+    constructor() {
+        this.isSmallScreen = window.innerWidth <= 768;
+        this.init();
+    }
+    
+    init() {
+        this.checkScreenSize();
+        this.forceVideoAutoplay();
+        
+        // Listen for window resize
+        window.addEventListener('resize', () => {
+            this.checkScreenSize();
+            this.forceVideoAutoplay();
+        });
+    }
+    
+    checkScreenSize() {
+        this.isSmallScreen = window.innerWidth <= 768;
+    }
+    
+    forceVideoAutoplay() {
+        if (!this.isSmallScreen) return;
+        
+        // Force autoplay for hero videos
+        const heroVideos = document.querySelectorAll('.hero__video');
+        heroVideos.forEach(video => {
+            this.enforceVideoAttributes(video);
+        });
+        
+        // Force autoplay for showcase video
+        const showcaseVideo = document.querySelector('.showcase__video');
+        if (showcaseVideo) {
+            this.enforceVideoAttributes(showcaseVideo);
+        }
+        
+        // Force autoplay for presentaciones videos
+        const presentacionesVideos = document.querySelectorAll('.presentaciones__video');
+        presentacionesVideos.forEach(video => {
+            this.enforceVideoAttributes(video);
+        });
+    }
+    
+    enforceVideoAttributes(video) {
+        if (!video) return;
+        
+        // Set required attributes
+        video.setAttribute('autoplay', 'true');
+        video.setAttribute('muted', 'true');
+        video.setAttribute('loop', 'true');
+        video.setAttribute('playsinline', 'true');
+        
+        // Force play if not already playing
+        video.muted = true;
+        video.loop = true;
+        
+        // Try to play the video
+        const playPromise = video.play();
+        if (playPromise !== undefined) {
+            playPromise.then(() => {
+                console.log('Video autoplay successful on small screen');
+            }).catch(error => {
+                console.log('Video autoplay failed, retrying...', error);
+                // Retry after a short delay
+                setTimeout(() => {
+                    video.play().catch(e => console.log('Video autoplay retry failed', e));
+                }, 1000);
+            });
+        }
+    }
+}
+
 // Initialize carousel and language manager when DOM is loaded
 document.addEventListener('DOMContentLoaded', () => {
     console.log('DOM loaded - initializing components...');
@@ -507,6 +580,7 @@ document.addEventListener('DOMContentLoaded', () => {
     window.heroCarousel = new HeroCarousel();
     window.languageManager = new LanguageManager();
     window.hamburgerMenu = new HamburgerMenu();
+    window.videoAutoplayManager = new VideoAutoplayManager();
     
     // Initialize presentaciones videos with delay to ensure DOM is ready
     setTimeout(() => {
