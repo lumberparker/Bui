@@ -1,0 +1,235 @@
+.header {
+    height: 121px;
+    background-color: #f6f4f5;
+    position: relative;
+}
+
+.header__content {
+    max-width: 1291px;
+    margin: 0 auto;
+    height: 100%;
+    padding: 0 40px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.header__left {
+    display: flex;
+    align-items: center;
+}
+
+.header__logo {
+    height: 60px;
+    width: auto;
+    object-fit: contain;
+    background-color: #f6f4f5;
+}
+
+.header__nav {
+    display: flex;
+    align-items: center;
+    flex: 1;
+    justify-content: flex-end;
+    margin: 0 40px;
+    height: 60px; /* Match logo height for alignment */
+    position: relative;
+}
+
+.header__nav-list {
+    display: flex;
+    align-items: center;
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    gap: 54px;
+}
+
+.header__nav-item {
+    margin: 0;
+}
+
+.header__nav-link {
+    font-family: var(--font-josefin);
+    font-weight: 400;
+    font-size: 16px;
+    line-height: 1.2;
+    color: #000000;
+    text-decoration: none;
+    transition: color 0.3s ease;
+}
+
+.header__nav-link:hover {
+    color: #666;
+}
+
+.header__hamburger {
+    display: none;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    width: 30px;
+    height: 30px;
+    background: transparent;
+    border: none;
+    cursor: pointer;
+    padding: 0;
+}
+
+.header__hamburger-line {
+    width: 24px;
+    height: 2px;
+    background-color: #000;
+    transition: all 0.3s ease;
+    margin: 2px 0;
+}
+
+.header__hamburger--active .header__hamburger-line:nth-child(1) {
+    transform: rotate(45deg) translate(5px, 5px);
+}
+
+.header__hamburger--active .header__hamburger-line:nth-child(2) {
+    opacity: 0;
+}
+
+.header__hamburger--active .header__hamburger-line:nth-child(3) {
+    transform: rotate(-45deg) translate(7px, -6px);
+}
+
+.header__right {
+    display: flex;
+    align-items: center;
+    height: 60px; /* Match logo height for alignment */
+}
+
+.header__language-switcher {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    padding: 8px 12px;
+    border: none;
+    border-radius: 6px;
+    background-color: transparent;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    font-family: var(--font-josefin);
+    font-weight: 500;
+    font-size: 14px;
+    color: #666;
+}
+
+.header__language-switcher:hover {
+    background-color: #f8f8f8;
+    transform: translateY(-1px);
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.header__language-switcher:active {
+    transform: translateY(0);
+    box-shadow: 0 1px 2px rgba(0, 0, 0, 0.1);
+}
+
+.header__flag {
+    font-size: 18px;
+    line-height: 1;
+}
+
+.header__lang-text {
+    font-size: 12px;
+    font-weight: 600;
+    letter-spacing: 0.5px;
+}
+
+/* Responsive styles */
+@media (max-width: 768px) {
+    .header__content {
+        padding: 0 20px;
+    }
+    
+    .header__logo {
+        height: 50px;
+    }
+    
+    .header__nav {
+        margin: 0 20px;
+        height: 50px; /* Match logo height for alignment */
+    }
+    
+    .header__nav-list {
+        display: none;
+        position: absolute;
+        top: 100%;
+        right: 0;
+        background-color: white;
+        box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        border-radius: 8px;
+        padding: 20px;
+        margin-top: 10px;
+        flex-direction: column;
+        gap: 20px;
+        min-width: 200px;
+        z-index: 1000;
+    }
+    
+    .header__nav-list--active {
+        display: flex;
+    }
+    
+    .header__hamburger {
+        display: flex;
+    }
+    
+    .header__right {
+        height: 50px; /* Match logo height for alignment */
+    }
+    
+    .header__language-switcher {
+        padding: 6px 10px;
+        gap: 4px;
+    }
+    
+    .header__flag {
+        font-size: 16px;
+    }
+    
+    .header__lang-text {
+        font-size: 11px;
+    }
+}
+
+@media (max-width: 480px) {
+    .header__content {
+        padding: 0 15px;
+    }
+    
+    .header__logo {
+        height: 40px;
+    }
+    
+    .header__nav {
+        margin: 0 15px;
+        height: 40px; /* Match logo height for alignment */
+    }
+    
+    .header__nav-list {
+        gap: 15px;
+        padding: 15px;
+        min-width: 180px;
+    }
+    
+    .header__right {
+        height: 40px; /* Match logo height for alignment */
+    }
+    
+    .header__language-switcher {
+        padding: 6px 8px;
+    }
+    
+    .header__flag {
+        font-size: 14px;
+    }
+    
+    .header__lang-text {
+        font-size: 10px;
+    }
+}

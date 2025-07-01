@@ -1,0 +1,94 @@
+{
+  "es": {
+    "title": "BUI",
+    "nav": ["Nosotros", "Productos", "Contacto"],
+    "slides": [
+      {
+        "title": "AGUA NATURAL DE MANANTIAL",
+        "subtitle": "Naturalmente potable, b'ui es un agua con décadas de filtración, baja en sales y un pH neutro."
+      },
+      {
+        "title": "PUREZA NATURAL",
+        "subtitle": "Agua cristalina directamente de manantiales naturales, sin procesos químicos artificiales."
+      },
+      {
+        "title": "CALIDAD PREMIUM",
+        "subtitle": "Décadas de filtración natural garantizan la más alta calidad en cada gota."
+      },
+      {
+        "title": "EXPERIENCIA ÚNICA",
+        "subtitle": "Cada sorbo es una conexión directa con la naturaleza más pura y auténtica."
+      }
+    ],
+    "marquee": "ERES LO QUE TOMAS, ",
+    "conoce": {
+      "text": "b'ui es extraída directamente de manantiales, que conservan la calidad y propiedades que nos brinda la naturaleza, desde la fuente.",
+      "button": "CONOCE MÁS SOBRE B'UI"
+    },
+    "propiedades": {
+      "title": "CON MÁS DE 10 PROPIEDADES MINERALES B'UI ES...",
+      "items": [
+        "Extraída de manantiales profundos.",
+        "Mineralizada Naturalmente",
+        "Perfectamente equilibrada para tu cuerpo."
+      ]
+    },
+    "presentaciones": {
+      "title": "Presentaciones",
+      "items": [
+        "Agua Natural",
+        "Agua Gasificada",
+        "Infusiones"
+      ]
+    },
+    "showcase": {
+      "title": "Agua purificada naturalmente del manantial a ti."
+    }
+  },
+  "en": {
+    "title": "BUI",
+    "nav": ["About Us", "Products", "Contact"],
+    "slides": [
+      {
+        "title": "NATURAL SPRING WATER",
+        "subtitle": "Naturally potable, b'ui is water with decades of filtration, low in salts and with a neutral pH."
+      },
+      {
+        "title": "NATURAL PURITY",
+        "subtitle": "Crystal clear water directly from natural springs, without artificial chemical processes."
+      },
+      {
+        "title": "PREMIUM QUALITY",
+        "subtitle": "Decades of natural filtration guarantee the highest quality in every drop."
+      },
+      {
+        "title": "UNIQUE EXPERIENCE",
+        "subtitle": "Every sip is a direct connection with the purest and most authentic nature."
+      }
+    ],
+    "marquee": "YOU ARE WHAT YOU DRINK, ",
+    "conoce": {
+      "text": "b'ui is extracted directly from springs, which preserve the quality and properties that nature gives us, from the source.",
+      "button": "LEARN MORE ABOUT B'UI"
+    },
+    "propiedades": {
+      "title": "WITH MORE THAN 10 MINERAL PROPERTIES B'UI IS...",
+      "items": [
+        "Extracted from deep springs.",
+        "Naturally Mineralized",
+        "Perfectly balanced for your body."
+      ]
+    },
+    "presentaciones": {
+      "title": "Presentations",
+      "items": [
+        "Natural Water",
+        "Sparkling Water",
+        "Infusions"
+      ]
+    },
+    "showcase": {
+      "title": "Water naturally purified from spring to you."
+    }
+  }
+}

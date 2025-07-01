@@ -1,0 +1,121 @@
+.conoce {
+    width: 100%;
+    background-color: #white; /* Light background to contrast with white SVG */
+    padding: 0;
+    margin: 0;
+    min-height: 400px; /* Give it some height so it's visible */
+    background-color: #f6f4f5; /* Light background color */
+}
+
+.conoce__bottom-border {
+   
+    width: 100vw; /* Full viewport width */
+    height: 100px; /* Reduced height to show only wavy part */
+    z-index: 4;
+    bottom: 0; /* Position at bottom of viewport */
+}
+
+.conoce__bottom-border svg {
+    width: 100vw; /* Full viewport width for SVG */
+    height: 320px; /* Keep original height */
+    display: block;
+    fill: none; /* No fill for the path */
+    stroke: #000000; /* Black stroke for visibility */
+    stroke-width: 1;
+    transform: translateY(-160px); /* Move up more to hide the top line completely */
+    z-index: 4;
+    margin-top: 100px;
+}
+
+.conoce__svg {
+
+}
+
+.conoce__content {
+    display: flex;
+    justify-content: space-between;
+    align-items: center; /* Vertically center items */
+    position: relative;
+    z-index: 5;
+    padding-top: 80px;/* Top padding to account for SVG height */
+    padding-left: 40px; /* Left padding for content */
+    padding-right: 40px; /* Right padding for content */
+    padding-bottom: 40px; /* Bottom padding for content */
+    box-sizing: border-box; /* Ensure padding is included in width */
+    background-color: #f6f4f5; /* White background for content area */
+    max-width: 1200px;
+    margin-left: auto;
+    margin-right: auto;
+  
+}
+
+.conoce__content_text {
+
+}
+
+.conoce__content_text-main {
+    width: 80%; /* Specific width from layout */
+    font-family: Josefin Sans;
+    font-weight: 400;
+    font-size: 26px;
+    line-height: 31px;
+    letter-spacing: 0%;
+ /* Specific width from layout */
+
+}
+
+.conoce__content_text-button {
+    background-color: #000000; /* Black background */
+    color: #ffffff; /* White text */
+    font-family: Josefin Sans; /* Same typography as main text */
+    font-weight: 400;
+    font-size: 16px;
+    line-height: 31px;
+    letter-spacing: 0%;
+    border: none; /* Remove default border */
+    margin-top: 33px;
+    padding: 12px 24px; /* Add some padding */
+    cursor: pointer; /* Show pointer on hover */
+    border-radius: 0; /* Keep sharp corners for modern look */
+}
+
+.conoce__content-image {
+    width: 46%; /* Specific width from layout */
+    height: auto; /* Specific height from layout */
+
+}
+
+
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+    .conoce__bottom-border {
+        height: 80px; /* Smaller height on mobile */
+        margin-top: -80px;
+    }
+    
+    .conoce__bottom-border svg {
+        height: 280px; /* Keep proportional height */
+        transform: translateY(-140px); /* Move up more to hide top line on mobile */
+    }
+    
+    .conoce__content {
+        padding: 200px 20px 20px;
+    }
+}
+
+@media (max-width: 480px) {
+    .conoce__bottom-border {
+        height: 60px;
+        margin-top: -60px;
+    }
+    
+    .conoce__bottom-border svg {
+        height: 240px; /* Keep proportional height */
+        transform: translateY(-120px); /* Move up more to hide top line on small screens */
+    }
+    
+    .conoce__content {
+        padding: 150px 16px 16px;
+    }
+}
