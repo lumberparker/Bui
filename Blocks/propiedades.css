@@ -86,7 +86,8 @@
   }
   
   .propiedades__imagen {
-    max-width: 80%;
+    width: 80%;
+    height: auto;
     order: 1;
   }
   
