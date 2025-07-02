@@ -177,82 +177,82 @@
 /* ====================================
    RESPONSIVE DESIGN
    ==================================== */
-@media (max-width: 860px) {
-    .footer__grid {
-        grid-template-columns: repeat(6, 1fr);
-        grid-template-rows: repeat(6, 1fr);
-        gap: 15px;
-    }
-    
-    .footer__bottle {
-        grid-column: 1;
-        grid-row: 1 / 4;
-    }
-    
-    .footer__nav-container {
-        grid-column: 2 / 4;
-        grid-row: 1 / 4;
-    }
-    
-    .footer__gallery-container {
-        grid-column: 1 / 7;
-        grid-row: 4;
-    }
-    
-    .footer__social-container {
-        grid-column: 1 / 7;
-        grid-row: 5;
-    }
-    
-    .footer__gallery-image {
-        height: 69px;
-    }
-}
+
 
 @media (max-width: 768px) {
     .footer {
         padding: 40px 0;
+        height: auto;
     }
     
     .footer__grid {
-        grid-template-columns: 1fr;
-        grid-template-rows: repeat(4, 1fr);
-        gap: 30px;
+        grid-template-columns: auto 1fr;
+        grid-template-rows: auto auto auto;
+        gap: 20px;
         padding: 0 20px;
+        justify-items: center;
+        align-items: center;
     }
     
-    .footer__bottle,
-    .footer__nav-container,
-    .footer__gallery-container,
-    .footer__social-container {
+    /* Bottle image - Left side, first row */
+    .footer__bottle {
         grid-column: 1;
-        grid-row: auto;
+        grid-row: 1;
+        justify-content: center;
     }
     
     .footer__bottle-image {
         max-width: 80px;
     }
     
+    /* Navigation - Right side next to bottle, first row */
+    .footer__nav-container {
+        grid-column: 2;
+        grid-row: 1;
+        justify-content: center;
+        align-items: center;
+        padding-left: 20px;
+    }
+    
     .footer__nav {
         gap: 15px;
+        text-align: center;
     }
     
     .footer__nav-link {
-        font-size: 14px;
+        font-size: 18px;
+        line-height: 20px;
+    }
+    
+    /* Organization icons - Second row, spans both columns */
+    .footer__gallery-container {
+        grid-column: 1 / 3;
+        grid-row: 2;
+        justify-content: center;
     }
     
     .footer__gallery {
-        gap: 10px;
+        gap: 15px;
+        justify-content: center;
     }
-     .footer__gallery-image {
-        height: 69px;
-        width: calc(25% - 7.5px);
+    
+    .footer__gallery-image {
+        height: 50px;
+        width: auto;
+        max-width: 60px;
+    }
+    
+    /* Social links, privacy and copyright - Third row, spans both columns */
+    .footer__social-container {
+        grid-column: 1 / 3;
+        grid-row: 3;
+        justify-content: center;
     }
 
     .footer__social {
-        gap: 15px;
-        flex-wrap: wrap;
+        gap: 20px;
         justify-content: center;
+        align-items: center;
     }
 
     .footer__social-icon {
