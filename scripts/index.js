@@ -1,18 +1,43 @@
 // Hero Carousel Functionality
 class HeroCarousel {
     constructor() {
+        console.log('HeroCarousel constructor called');
         this.slidesContainer = document.querySelector('.hero__carousel');
         this.slides = document.querySelectorAll('.hero__slide');
         this.dotsContainer = document.querySelector('.hero__dots');
+        
+        console.log('Slides container:', this.slidesContainer);
+        console.log('Slides found:', this.slides);
+        console.log('Dots container:', this.dotsContainer);
+        
+        if (!this.slidesContainer) {
+            console.error('No slides container found (.hero__carousel)');
+            return;
+        }
+        
+        if (!this.slides.length) {
+            console.error('No slides found (.hero__slide)');
+            return;
+        }
+        
+        if (!this.dotsContainer) {
+            console.error('No dots container found (.hero__dots)');
+            return;
+        }
+        
         this.dots = [];
         this.currentSlide = 0;
         this.autoSlideInterval = null;
         this.isTransitioning = false;
         
+        console.log('HeroCarousel initialized, calling init()');
         this.init();
     }
     
     init() {
+        console.log('Initializing hero carousel...');
+        console.log('Found slides:', this.slides.length);
+        
         // Ensure first slide is active
         this.slides.forEach((slide, index) => {
             slide.classList.remove('hero__slide--active');
@@ -31,12 +56,19 @@ class HeroCarousel {
         
         // Start auto-sliding
         this.startAutoSlide();
+        console.log('Auto-slide started');
         
         // Pause auto-slide on hover
         const heroSection = document.querySelector('.hero');
         if (heroSection) {
-            heroSection.addEventListener('mouseenter', () => this.pauseAutoSlide());
-            heroSection.addEventListener('mouseleave', () => this.startAutoSlide());
+            heroSection.addEventListener('mouseenter', () => {
+                console.log('Mouse entered hero - pausing auto-slide');
+                this.pauseAutoSlide();
+            });
+            heroSection.addEventListener('mouseleave', () => {
+                console.log('Mouse left hero - resuming auto-slide');
+                this.startAutoSlide();
+            });
         }
     }
     
@@ -98,9 +130,11 @@ class HeroCarousel {
     
     startAutoSlide() {
         this.pauseAutoSlide(); // Clear any existing interval
+        console.log('Starting auto-slide with 5 second intervals');
         this.autoSlideInterval = setInterval(() => {
+            console.log('Auto-advancing to next slide');
             this.nextSlide();
-        }, 20000); // 20 seconds
+        }, 5000); // 5 seconds for testing
     }
     
     pauseAutoSlide() {
@@ -673,16 +707,45 @@ class RippleEffect {
 // Initialize carousel and language manager when DOM is loaded
 document.addEventListener('DOMContentLoaded', () => {
     console.log('DOM loaded - initializing components...');
+    console.log('Document ready state:', document.readyState);
     
-    // Initialize core components
-    window.heroCarousel = new HeroCarousel();
-    window.languageManager = new LanguageManager();
-    window.hamburgerMenu = new HamburgerMenu();
-    window.videoAutoplayManager = new VideoAutoplayManager();
-    window.rippleEffect = new RippleEffect();
+    // Check if hero elements exist
+    const heroSection = document.querySelector('.hero');
+    const heroCarousel = document.querySelector('.hero__carousel');
+    const heroSlides = document.querySelectorAll('.hero__slide');
+    const heroDots = document.querySelector('.hero__dots');
+    
+    console.log('Hero section:', heroSection);
+    console.log('Hero carousel:', heroCarousel);
+    console.log('Hero slides:', heroSlides.length);
+    console.log('Hero dots container:', heroDots);
+    
+    try {
+        // Initialize core components
+        console.log('Creating HeroCarousel...');
+        window.heroCarousel = new HeroCarousel();
+        console.log('HeroCarousel created:', window.heroCarousel);
+        
+        console.log('Creating LanguageManager...');
+        window.languageManager = new LanguageManager();
+        
+        console.log('Creating HamburgerMenu...');
+        window.hamburgerMenu = new HamburgerMenu();
+        
+        console.log('Creating VideoAutoplayManager...');
+        window.videoAutoplayManager = new VideoAutoplayManager();
+        
+        console.log('Creating RippleEffect...');
+        window.rippleEffect = new RippleEffect();
+        
+        console.log('All components initialized successfully');
+    } catch (error) {
+        console.error('Error initializing components:', error);
+    }
     
     // Initialize presentaciones videos with delay to ensure DOM is ready
     setTimeout(() => {
+        console.log('Initializing presentaciones videos...');
         initPresentacionesVideos();
     }, 1000);
 });
