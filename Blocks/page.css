@@ -10,12 +10,6 @@
     margin: 0;
     padding: 0;
     box-sizing: border-box;
-    
-    /* Disable text selection globally */
-    -webkit-user-select: none; /* Safari */
-    -moz-user-select: none; /* Firefox */
-    -ms-user-select: none; /* Internet Explorer/Edge */
-    user-select: none; /* Standard */
 }
 
 /* ====================================
@@ -35,15 +29,11 @@ body {
     margin-left: auto; /* Center the body */
     margin-right: auto; /* Center the body */
     
-    /* Disable text selection */
-    -webkit-user-select: none; /* Safari */
-    -moz-user-select: none; /* Firefox */
-    -ms-user-select: none; /* Internet Explorer/Edge */
-    user-select: none; /* Standard */
+    /* Allow smooth scrolling on mobile */
+    -webkit-overflow-scrolling: touch;
     
-    /* Disable text highlighting */
-    -webkit-touch-callout: none; /* iOS Safari */
-    -webkit-tap-highlight-color: transparent; /* Remove tap highlight on mobile */
+    /* Remove tap highlight but keep scrolling functional */
+    -webkit-tap-highlight-color: transparent;
 }
 
 .page-container {
@@ -52,4 +42,27 @@ body {
     width: 100%;
     padding: 0 20px; /* Add padding for mobile spacing */
     box-sizing: border-box;
+}
+
+/* ====================================
+   MOBILE SCROLLING OPTIMIZATION
+   ==================================== */
+html, body {
+    /* Enable smooth scrolling on iOS */
+    -webkit-overflow-scrolling: touch;
+    
+    /* Allow touch actions for scrolling */
+    touch-action: pan-y;
+}
+
+/* Ensure main content areas allow scrolling */
+.hero,
+.marquee,
+.conoce,
+.propiedades,
+.presentaciones,
+.showcase,
+.footer {
+    /* Allow vertical scrolling */
+    touch-action: pan-y;
 }
