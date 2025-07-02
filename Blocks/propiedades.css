@@ -42,7 +42,7 @@
    
 }
 .propiedades__content_item {
-     border-color: white;
+    border: transparent;
     border-bottom: #000000;
     border-width: 1px;
     border-style: solid;
