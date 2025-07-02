@@ -134,7 +134,7 @@ class HeroCarousel {
         this.autoSlideInterval = setInterval(() => {
             console.log('Auto-advancing to next slide');
             this.nextSlide();
-        }, 5000); // 5 seconds for testing
+        }, 10000); // 5 seconds for testing
     }
     
     pauseAutoSlide() {
