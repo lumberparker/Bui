@@ -182,6 +182,7 @@
     
     .productos__card-image-container {
         height: 187px;
+        overflow: visible;
     }
     
     .productos__card-image-circle {
