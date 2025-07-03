@@ -3,11 +3,10 @@
    ==================================== */
 .productos {
     padding: 80px 0px;
-    background-color: #f1eff0;
+    background-color: #f6f4f5;
 }
 
 .productos__container {
-    max-width: 1200px;
     margin: 0 auto;
     background-color:transparent;
 }
@@ -47,7 +46,7 @@
    PRODUCT CARDS
    ==================================== */
 .productos__card {
-    background: #f1eff0;
+    background: transparent;
     border-radius: 12px;
     padding: 30px;
     transition: all 0.3s ease;
