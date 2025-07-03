@@ -74,7 +74,7 @@
     left: -5px;
     right: -5px;
     bottom: -5px;
-    background: rgba(255, 255, 255, 0); /* Very subtle ice-clear tint */
+    background: rgba(131, 139, 145, 0.338); /* Very subtle ice-clear tint */
     backdrop-filter: blur(8px) saturate(120%) brightness(110%); /* Clear ice effect */
     -webkit-backdrop-filter: blur(8px) saturate(120%) brightness(110%); /* Safari support */
     border: 1px solid rgba(255, 255, 255, 0.3); /* Ice-like crystalline border */
