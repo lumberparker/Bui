@@ -738,6 +738,50 @@ class StickyHeader {
     }
 }
 
+// Text curving functionality for presentaciones
+class TextCurver {
+    constructor() {
+        this.init();
+    }
+    
+    init() {
+        // Find all presentaciones item titles
+        const titles = document.querySelectorAll('.presentaciones__item-title');
+        
+        titles.forEach(title => {
+            this.wrapLetters(title);
+        });
+    }
+    
+    wrapLetters(titleElement) {
+        // Add curve-text class
+        titleElement.classList.add('curve-text');
+        
+        // Get the text content
+        const text = titleElement.textContent;
+        
+        // Clear the element
+        titleElement.innerHTML = '';
+        
+        // Wrap each letter in a span
+        for (let i = 0; i < text.length; i++) {
+            const letter = text[i];
+            if (letter === ' ') {
+                // Handle spaces
+                const space = document.createElement('span');
+                space.innerHTML = '&nbsp;';
+                space.classList.add('letter', 'space');
+                titleElement.appendChild(space);
+            } else {
+                const letterSpan = document.createElement('span');
+                letterSpan.textContent = letter;
+                letterSpan.classList.add('letter');
+                titleElement.appendChild(letterSpan);
+            }
+        }
+    }
+}
+
 // Initialize carousel and language manager when DOM is loaded
 document.addEventListener('DOMContentLoaded', () => {
     console.log('DOM loaded - initializing components...');
@@ -774,6 +818,9 @@ document.addEventListener('DOMContentLoaded', () => {
         
         console.log('Creating StickyHeader...');
         window.stickyHeader = new StickyHeader();
+        
+        console.log('Creating TextCurver...');
+        window.textCurver = new TextCurver();
         
         console.log('All components initialized successfully');
     } catch (error) {

@@ -34,6 +34,10 @@
     background-position: center;
     background-repeat: no-repeat;
     background-color: #f0f0f0; /* Fallback color if image doesn't load */
+    
+    /* Black and white mask effect for consistency with videos */
+    filter: grayscale(100%) contrast(110%) brightness(95%);
+    transition: filter 0.3s ease;
 }
 
 .hero__video {
@@ -44,6 +48,10 @@
     height: 100%;
     object-fit: cover; /* Maintains aspect ratio while covering the entire area */
     z-index: -1; /* Places video behind any content */
+    
+    /* Black and white mask effect */
+    filter: grayscale(100%) contrast(110%) brightness(95%);
+    transition: filter 0.3s ease;
 }
 
 .hero__content {

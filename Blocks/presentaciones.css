@@ -176,7 +176,48 @@
     text-transform: uppercase;
     color: #000000;
     margin: 0;
+    transition: all 0.6s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+    transform-origin: center;
+    position: relative;
+    overflow: visible;
 }
+
+/* Create curved text effect on hover */
+.presentaciones__media:hover + .presentaciones__item-title {
+    transform: perspective(600px) rotateX(45deg) scale(0.85);
+    letter-spacing: 3px;
+    margin-top: 15px; /* Move text closer to circle */
+    transform-origin: center top; /* Rotate from top to create bottom curve */
+}
+
+/* Alternative: Create individual letter curving effect */
+.presentaciones__item-title.curve-text {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 1px;
+}
+
+.presentaciones__item-title.curve-text .letter {
+    display: inline-block;
+    transition: all 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+    transform-origin: center top; /* Changed to top for proper bottom curve */
+}
+
+/* Curve individual letters around circle on hover - Exact Bottom Circumference */
+.presentaciones__media:hover + .presentaciones__item-title.curve-text .letter:nth-child(1) { transform: rotate(-35deg) translateY(15px) translateX(-8px); }
+.presentaciones__media:hover + .presentaciones__item-title.curve-text .letter:nth-child(2) { transform: rotate(-28deg) translateY(12px) translateX(-6px); }
+.presentaciones__media:hover + .presentaciones__item-title.curve-text .letter:nth-child(3) { transform: rotate(-21deg) translateY(9px) translateX(-4px); }
+.presentaciones__media:hover + .presentaciones__item-title.curve-text .letter:nth-child(4) { transform: rotate(-14deg) translateY(6px) translateX(-2px); }
+.presentaciones__media:hover + .presentaciones__item-title.curve-text .letter:nth-child(5) { transform: rotate(-7deg) translateY(3px) translateX(-1px); }
+.presentaciones__media:hover + .presentaciones__item-title.curve-text .letter:nth-child(6) { transform: rotate(0deg) translateY(0px) translateX(0px); }
+.presentaciones__media:hover + .presentaciones__item-title.curve-text .letter:nth-child(7) { transform: rotate(7deg) translateY(3px) translateX(1px); }
+.presentaciones__media:hover + .presentaciones__item-title.curve-text .letter:nth-child(8) { transform: rotate(14deg) translateY(6px) translateX(2px); }
+.presentaciones__media:hover + .presentaciones__item-title.curve-text .letter:nth-child(9) { transform: rotate(21deg) translateY(9px) translateX(4px); }
+.presentaciones__media:hover + .presentaciones__item-title.curve-text .letter:nth-child(10) { transform: rotate(28deg) translateY(12px) translateX(6px); }
+.presentaciones__media:hover + .presentaciones__item-title.curve-text .letter:nth-child(11) { transform: rotate(35deg) translateY(15px) translateX(8px); }
+.presentaciones__media:hover + .presentaciones__item-title.curve-text .letter:nth-child(12) { transform: rotate(42deg) translateY(18px) translateX(10px); }
 
 /* ====================================
    RESPONSIVE DESIGN
@@ -195,6 +236,19 @@
         font-size: 22px;
         line-height: 24px;
     }
+    
+    /* Adjust curve effect for smaller circles - Exact Bottom Arc (200px circle) */
+    .presentaciones__media:hover + .presentaciones__item-title.curve-text .letter:nth-child(1) { transform: rotate(-30deg) translateY(13px) translateX(-7px); }
+    .presentaciones__media:hover + .presentaciones__item-title.curve-text .letter:nth-child(2) { transform: rotate(-24deg) translateY(10px) translateX(-5px); }
+    .presentaciones__media:hover + .presentaciones__item-title.curve-text .letter:nth-child(3) { transform: rotate(-18deg) translateY(8px) translateX(-3px); }
+    .presentaciones__media:hover + .presentaciones__item-title.curve-text .letter:nth-child(4) { transform: rotate(-12deg) translateY(5px) translateX(-2px); }
+    .presentaciones__media:hover + .presentaciones__item-title.curve-text .letter:nth-child(5) { transform: rotate(-6deg) translateY(3px) translateX(-1px); }
+    .presentaciones__media:hover + .presentaciones__item-title.curve-text .letter:nth-child(6) { transform: rotate(0deg) translateY(0px) translateX(0px); }
+    .presentaciones__media:hover + .presentaciones__item-title.curve-text .letter:nth-child(7) { transform: rotate(6deg) translateY(3px) translateX(1px); }
+    .presentaciones__media:hover + .presentaciones__item-title.curve-text .letter:nth-child(8) { transform: rotate(12deg) translateY(5px) translateX(2px); }
+    .presentaciones__media:hover + .presentaciones__item-title.curve-text .letter:nth-child(9) { transform: rotate(18deg) translateY(8px) translateX(3px); }
+    .presentaciones__media:hover + .presentaciones__item-title.curve-text .letter:nth-child(10) { transform: rotate(24deg) translateY(10px) translateX(5px); }
+    .presentaciones__media:hover + .presentaciones__item-title.curve-text .letter:nth-child(11) { transform: rotate(30deg) translateY(13px) translateX(7px); }
 }
 
 @media (max-width: 896px) {
@@ -223,6 +277,24 @@
         font-size: 20px;
         line-height: 22px;
     }
+    
+    /* Simplify curve effect for mobile - Bottom Arc */
+    .presentaciones__media:hover + .presentaciones__item-title {
+        transform: perspective(250px) rotateX(15deg) scale(0.95);
+        margin-top: 5px;
+    }
+    
+    .presentaciones__media:hover + .presentaciones__item-title.curve-text .letter:nth-child(1) { transform: rotate(-20deg) translateY(8px) translateX(-4px); }
+    .presentaciones__media:hover + .presentaciones__item-title.curve-text .letter:nth-child(2) { transform: rotate(-16deg) translateY(6px) translateX(-3px); }
+    .presentaciones__media:hover + .presentaciones__item-title.curve-text .letter:nth-child(3) { transform: rotate(-12deg) translateY(5px) translateX(-2px); }
+    .presentaciones__media:hover + .presentaciones__item-title.curve-text .letter:nth-child(4) { transform: rotate(-8deg) translateY(3px) translateX(-1px); }
+    .presentaciones__media:hover + .presentaciones__item-title.curve-text .letter:nth-child(5) { transform: rotate(-4deg) translateY(2px) translateX(-0.5px); }
+    .presentaciones__media:hover + .presentaciones__item-title.curve-text .letter:nth-child(6) { transform: rotate(0deg) translateY(0px) translateX(0px); }
+    .presentaciones__media:hover + .presentaciones__item-title.curve-text .letter:nth-child(7) { transform: rotate(4deg) translateY(2px) translateX(0.5px); }
+    .presentaciones__media:hover + .presentaciones__item-title.curve-text .letter:nth-child(8) { transform: rotate(8deg) translateY(3px) translateX(1px); }
+    .presentaciones__media:hover + .presentaciones__item-title.curve-text .letter:nth-child(9) { transform: rotate(12deg) translateY(5px) translateX(2px); }
+    .presentaciones__media:hover + .presentaciones__item-title.curve-text .letter:nth-child(10) { transform: rotate(16deg) translateY(6px) translateX(3px); }
+    .presentaciones__media:hover + .presentaciones__item-title.curve-text .letter:nth-child(11) { transform: rotate(20deg) translateY(8px) translateX(4px); }
 }
 
 @media (max-width: 480px) {
@@ -248,6 +320,24 @@
         font-size: 18px;
         line-height: 20px;
     }
+    
+    /* Further simplify for small screens - Bottom Arc */
+    .presentaciones__media:hover + .presentaciones__item-title {
+        transform: perspective(200px) rotateX(10deg) scale(0.98);
+        margin-top: 3px;
+        letter-spacing: 1px;
+    }
+    
+    /* Minimal curve effect for very small screens - Exact Bottom Arc (150px circle) */
+    .presentaciones__media:hover + .presentaciones__item-title.curve-text .letter:nth-child(1) { transform: rotate(-8deg) translateY(4px) translateX(-2px) !important; }
+    .presentaciones__media:hover + .presentaciones__item-title.curve-text .letter:nth-child(2) { transform: rotate(-6deg) translateY(3px) translateX(-1px) !important; }
+    .presentaciones__media:hover + .presentaciones__item-title.curve-text .letter:nth-child(3) { transform: rotate(-4deg) translateY(2px) translateX(-0.5px) !important; }
+    .presentaciones__media:hover + .presentaciones__item-title.curve-text .letter:nth-child(4) { transform: rotate(-2deg) translateY(1px) translateX(-0.25px) !important; }
+    .presentaciones__media:hover + .presentaciones__item-title.curve-text .letter:nth-child(5) { transform: rotate(0deg) translateY(0px) translateX(0px) !important; }
+    .presentaciones__media:hover + .presentaciones__item-title.curve-text .letter:nth-child(6) { transform: rotate(2deg) translateY(1px) translateX(0.25px) !important; }
+    .presentaciones__media:hover + .presentaciones__item-title.curve-text .letter:nth-child(7) { transform: rotate(4deg) translateY(2px) translateX(0.5px) !important; }
+    .presentaciones__media:hover + .presentaciones__item-title.curve-text .letter:nth-child(8) { transform: rotate(6deg) translateY(3px) translateX(1px) !important; }
+    .presentaciones__media:hover + .presentaciones__item-title.curve-text .letter:nth-child(9) { transform: rotate(8deg) translateY(4px) translateX(2px) !important; }
 }
 
 @media (max-width: 320px) {
