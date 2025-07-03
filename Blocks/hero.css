@@ -122,6 +122,7 @@
         max-width: 382px; /* Don't exceed original width */
         left: 20px;
         height: auto; /* Allow height to adjust based on content */
+        padding: 10px;
     }
     
     .hero__content-title {
