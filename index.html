@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>B'UI AGUA NATURAL CON MINERALES</title>
+    <title>B'UI AGUA NATURAL DE  MANANTIAL</title>
     
     <!-- SEO Meta Tags -->
     <meta name="description" content="B'UI agua natural de manantial con minerales. Descubre la pureza de nuestra agua natural, rica en minerales esenciales. Presentaciones premium para tu bienestar y salud.">
@@ -186,10 +186,45 @@
             </div>
         </div>
     </section>
-    <section class="productos"></section>
+    <section class="productos">
+        <div class="productos__container">
+            <h2 class="productos__title" data-translate="productos.title">NUESTROS PRODUCTOS</h2>
+            <div class="productos__grid" id="productosGrid">
+                <!-- Cards will be dynamically generated from JSON -->
+            </div>
+        </div>
+    </section>
     <section class="encuentra"></section>
     
-    <footer class="footer">
+   
+    
+<script src="scripts/loader.js"></script>
+<script>
+    console.log('Inline script running - JavaScript is working');
+    console.log('DOM readyState:', document.readyState);
+</script>
+<script src="scripts/index.js"></script>
+<script>
+    console.log('After index.js script tag');
+    // Force initialization if DOMContentLoaded already fired
+    if (document.readyState === 'complete' || document.readyState === 'interactive') {
+        console.log('DOM already ready, forcing carousel initialization');
+        setTimeout(() => {
+            try {
+                if (typeof HeroCarousel !== 'undefined') {
+                    console.log('Creating HeroCarousel manually...');
+                    window.heroCarousel = new HeroCarousel();
+                } else {
+                    console.error('HeroCarousel class not found');
+                }
+            } catch (e) {
+                console.error('Error creating carousel:', e);
+            }
+        }, 100);
+    }
+</script>
+</body>
+ <footer class="footer">
         <div class="footer__grid">
             <!-- Bottle Image - Column 2, spans all 4 rows -->
             <div class="footer__bottle">
@@ -235,32 +270,4 @@
             </div>
         </div>
     </footer>
-    
-<script src="scripts/loader.js"></script>
-<script>
-    console.log('Inline script running - JavaScript is working');
-    console.log('DOM readyState:', document.readyState);
-</script>
-<script src="scripts/index.js"></script>
-<script>
-    console.log('After index.js script tag');
-    // Force initialization if DOMContentLoaded already fired
-    if (document.readyState === 'complete' || document.readyState === 'interactive') {
-        console.log('DOM already ready, forcing carousel initialization');
-        setTimeout(() => {
-            try {
-                if (typeof HeroCarousel !== 'undefined') {
-                    console.log('Creating HeroCarousel manually...');
-                    window.heroCarousel = new HeroCarousel();
-                } else {
-                    console.error('HeroCarousel class not found');
-                }
-            } catch (e) {
-                console.error('Error creating carousel:', e);
-            }
-        }, 100);
-    }
-</script>
-</body>
-
 </html>

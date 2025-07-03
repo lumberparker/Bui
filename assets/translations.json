@@ -43,6 +43,9 @@
     },
     "showcase": {
       "title": "Agua purificada naturalmente del manantial a ti."
+    },
+    "productos": {
+      "title": "NUESTROS PRODUCTOS"
     }
   },
   "en": {
@@ -89,6 +92,9 @@
     },
     "showcase": {
       "title": "Water naturally purified from spring to you."
+    },
+    "productos": {
+      "title": "OUR PRODUCTS"
     }
   }
 }

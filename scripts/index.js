@@ -189,7 +189,7 @@ class LanguageManager {
     // Load translations from external JSON file
     async loadTranslations() {
         try {
-            const response = await fetch('./translations/translations.json');
+            const response = await fetch('./assets/translations.json');
             if (!response.ok) {
                 throw new Error(`Failed to load translations: ${response.status}`);
             }
@@ -782,6 +782,240 @@ class TextCurver {
     }
 }
 
+// Products Grid Functionality
+class ProductsGrid {
+    constructor() {
+        this.gridContainer = document.getElementById('productosGrid');
+        this.productsData = [];
+        this.init();
+    }
+    
+    async init() {
+        await this.loadProductsData();
+        this.renderProducts();
+    }
+    
+    async loadProductsData() {
+        try {
+            const response = await fetch('/assets/productos.json');
+            if (!response.ok) {
+                throw new Error(`HTTP error! status: ${response.status}`);
+            }
+            const data = await response.json();
+            this.productsData = data.productos;
+            console.log('Products data loaded:', this.productsData);
+        } catch (error) {
+            console.error('Error loading products data:', error);
+            // Fallback data in case JSON fails to load
+            this.productsData = [
+                {
+                    id: 1,
+                    image: "/images/agua-natural-card.jpg",
+                    title: "Agua Natural",
+                    sizes: ["350ml", "500ml", "1L"],
+                    circleColor: "#E3F2FD"
+                },
+                {
+                    id: 2,
+                    image: "/images/agua-gasificada-card.jpg",
+                    title: "Agua Gasificada",
+                    sizes: ["350ml", "500ml", "750ml"],
+                    circleColor: "#F3E5F5"
+                },
+                {
+                    id: 3,
+                    image: "/images/infusiones-card.jpg",
+                    title: "Infusiones",
+                    sizes: ["350ml", "500ml", "750ml"],
+                    circleColor: "#E8F5E8"
+                },
+                {
+                    id: 4,
+                    image: "/images/agua-premium-card.jpg",
+                    title: "Agua Premium",
+                    sizes: ["500ml", "750ml", "1L"],
+                    circleColor: "#FFF3E0"
+                },
+                {
+                    id: 5,
+                    image: "/images/agua-deportiva-card.jpg",
+                    title: "Agua Deportiva",
+                    sizes: ["500ml", "750ml", "1L"],
+                    circleColor: "#E1F5FE"
+                },
+                {
+                    id: 6,
+                    image: "/images/agua-minerales-card.jpg",
+                    title: "Agua con Minerales",
+                    sizes: ["350ml", "500ml", "1L"],
+                    circleColor: "#F9FBE7"
+                }
+            ];
+        }
+    }
+    
+    renderProducts() {
+        if (!this.gridContainer) {
+            console.error('Products grid container not found');
+            return;
+        }
+        
+        // Clear existing content
+        this.gridContainer.innerHTML = '';
+        
+        // Generate dynamic CSS animation based on number of products
+        this.generateCarouselAnimation();
+        
+        // Create carousel wrapper
+        const carouselWrapper = document.createElement('div');
+        carouselWrapper.className = 'productos__carousel';
+        
+        // Create cards for each product (duplicate for infinite scroll)
+        const allProducts = [...this.productsData, ...this.productsData];
+        
+        allProducts.forEach(product => {
+            const card = this.createProductCard(product);
+            carouselWrapper.appendChild(card);
+        });
+        
+        this.gridContainer.appendChild(carouselWrapper);
+        
+        console.log(`Rendered ${this.productsData.length} product cards in carousel`);
+    }
+    
+    generateCarouselAnimation() {
+        const numCards = this.productsData.length;
+        const cardWidth = 370; // 350px card + 20px gap
+        const pauseDuration = 2.5; // seconds per card
+        const slideDuration = 0.5; // seconds to slide between cards
+        const totalDuration = numCards * (pauseDuration + slideDuration);
+        
+        // Remove existing dynamic style if it exists
+        const existingStyle = document.getElementById('dynamic-carousel-animation');
+        if (existingStyle) {
+            existingStyle.remove();
+        }
+        
+        // Create keyframes - we'll animate through all original cards, 
+        // then the animation restarts and shows the duplicated cards seamlessly
+        let keyframes = '';
+        
+        for (let i = 0; i <= numCards; i++) {
+            const stepDuration = pauseDuration + slideDuration;
+            const percent = (i / numCards) * 100;
+            const translateX = i * cardWidth;
+            
+            if (i < numCards) {
+                // Regular cards with pauses
+                const pauseStartPercent = (i * stepDuration / totalDuration) * 100;
+                const pauseEndPercent = ((i * stepDuration + pauseDuration) / totalDuration) * 100;
+                
+                // Start of pause (card centered)
+                keyframes += `
+                    ${pauseStartPercent.toFixed(2)}% {
+                        transform: translateX(-${translateX}px);
+                    }
+                `;
+                
+                // End of pause (still centered)
+                keyframes += `
+                    ${pauseEndPercent.toFixed(2)}% {
+                        transform: translateX(-${translateX}px);
+                    }
+                `;
+            }
+            
+            // Final position - this moves to show the first duplicated card
+            if (i === numCards) {
+                keyframes += `
+                    100% {
+                        transform: translateX(-${translateX}px);
+                    }
+                `;
+            }
+        }
+        
+        // Create the complete CSS animation with hover pause
+        const css = `
+            @keyframes slideCardsDynamic {
+                ${keyframes}
+            }
+            
+            .productos__carousel {
+                animation: slideCardsDynamic ${totalDuration}s linear infinite;
+            }
+            
+            .productos__grid:hover .productos__carousel {
+                animation-play-state: paused;
+            }
+        `;
+        
+        // Inject the CSS
+        const style = document.createElement('style');
+        style.id = 'dynamic-carousel-animation';
+        style.textContent = css;
+        document.head.appendChild(style);
+        
+        console.log(`Generated animation for ${numCards} cards, duration: ${totalDuration}s`);
+    }
+    
+    createProductCard(product) {
+        const card = document.createElement('div');
+        card.className = 'productos__card';
+        card.setAttribute('data-product-id', product.id);
+        
+        // Create sizes HTML
+        const sizesHTML = product.sizes.map(size => 
+            `<div class="productos__card-size">${size}</div>`
+        ).join('');
+        
+        // Get circle color from product data, default to white if not present
+        const circleColor = product.circleColor || '#ffffff';
+        
+        card.innerHTML = `
+            <div class="productos__card-image-container">
+                <div class="productos__card-image-circle" style="background-color: ${circleColor};"></div>
+                <img src="${product.image}" alt="${product.title}" class="productos__card-image" loading="lazy">
+            </div>
+            <h3 class="productos__card-title">${product.title}</h3>
+            <div class="productos__card-sizes">
+                ${sizesHTML}
+            </div>
+        `;
+        
+        // Add click handler for the card
+        card.addEventListener('click', () => {
+            this.handleCardClick(product);
+        });
+        
+        return card;
+    }
+    
+    handleCardClick(product) {
+        console.log('Product clicked:', product);
+        // You can add product detail modal or navigation here
+    }
+    
+    // Method to add new products dynamically
+    addProduct(newProduct) {
+        this.productsData.push(newProduct);
+        this.renderProducts();
+    }
+    
+    // Method to remove a product
+    removeProduct(productId) {
+        this.productsData = this.productsData.filter(product => product.id !== productId);
+        this.renderProducts();
+    }
+    
+    // Method to update grid layout based on number of products
+    updateGridLayout() {
+        const productCount = this.productsData.length;
+        const columns = Math.min(3, Math.ceil(Math.sqrt(productCount)));
+        this.gridContainer.style.gridTemplateColumns = `repeat(${columns}, 1fr)`;
+    }
+}
+
 // Initialize carousel and language manager when DOM is loaded
 document.addEventListener('DOMContentLoaded', () => {
     console.log('DOM loaded - initializing components...');
@@ -821,6 +1055,9 @@ document.addEventListener('DOMContentLoaded', () => {
         
         console.log('Creating TextCurver...');
         window.textCurver = new TextCurver();
+        
+        console.log('Creating ProductsGrid...');
+        window.productsGrid = new ProductsGrid();
         
         console.log('All components initialized successfully');
     } catch (error) {

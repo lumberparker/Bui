@@ -28,7 +28,7 @@
     grid-template-columns: repeat(10, 1fr);
     grid-template-rows: repeat(4, 1fr);
     gap: 15px;
-    max-width: 1200px;
+    max-width: 1100px;
     margin: 0 auto;
     padding: 0 40px;
     box-sizing: border-box;
@@ -60,7 +60,7 @@
 }
 
 .footer__bottle-image:hover {
-    transform: rotate(-8deg);
+    transform: rotate(-15deg);
 }
 
 /* Navigation - Columns 3-4, spans rows 1-3 */
