@@ -704,6 +704,40 @@ class RippleEffect {
     }
 }
 
+// Sticky Header with Glass Morphism Effect
+class StickyHeader {
+    constructor() {
+        this.header = document.querySelector('.header');
+        this.scrollThreshold = 50; // Pixels scrolled before effect activates
+        this.init();
+    }
+    
+    init() {
+        if (!this.header) {
+            console.warn('Header element not found');
+            return;
+        }
+        
+        // Add scroll event listener
+        window.addEventListener('scroll', () => this.handleScroll());
+        
+        // Initial check in case page is already scrolled
+        this.handleScroll();
+        
+        console.log('Sticky header initialized');
+    }
+    
+    handleScroll() {
+        const scrollY = window.scrollY;
+        
+        if (scrollY > this.scrollThreshold) {
+            this.header.classList.add('header--scrolled');
+        } else {
+            this.header.classList.remove('header--scrolled');
+        }
+    }
+}
+
 // Initialize carousel and language manager when DOM is loaded
 document.addEventListener('DOMContentLoaded', () => {
     console.log('DOM loaded - initializing components...');
@@ -737,6 +771,9 @@ document.addEventListener('DOMContentLoaded', () => {
         
         console.log('Creating RippleEffect...');
         window.rippleEffect = new RippleEffect();
+        
+        console.log('Creating StickyHeader...');
+        window.stickyHeader = new StickyHeader();
         
         console.log('All components initialized successfully');
     } catch (error) {

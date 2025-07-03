@@ -28,6 +28,7 @@ body {
     max-width: 1100px; /* Never exceed viewport width */
     margin-left: auto; /* Center the body */
     margin-right: auto; /* Center the body */
+    padding-top: 121px; /* Compensate for fixed header */
     
     /* Allow smooth scrolling on mobile */
     -webkit-overflow-scrolling: touch;
